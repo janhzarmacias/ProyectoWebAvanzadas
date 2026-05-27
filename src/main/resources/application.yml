@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  # 1. Configuraci�n de conexi�n a PostgreSQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/renta_juegos_db
+    username: postgres
+    password: montero
+    driver-class-name: org.postgresql.Driver
+
+  # 2. Configuraci�n de JPA e Hibernate (La magia autom�tica)
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      # 'update' actualiza el esquema si hay cambios.
+      # 'create-drop' borra y crea todo de cero al reiniciar (�til al inicio, pero peligroso luego)
+      ddl-auto: update
+
+    # 3. Herramientas de desarrollo
+    # Muestra en la consola el SQL que Spring genera por detr�s
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # 4. Configuraci�n de Thymeleaf (para evitar problemas en desarrollo)
+  thymeleaf:
+    cache: false # Apaga el cach� para que veas los cambios en el HTML al recargar la p�gina
+    mode: HTML
