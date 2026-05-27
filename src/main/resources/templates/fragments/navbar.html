@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/catalogo">
+                🎮 Asociación FIS
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/catalogo">Catálogo</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center" sec:authorize="isAuthenticated()">
+
+                    <div class="text-white me-3 text-end d-none d-lg-block">
+                        <div class="small fw-bold" sec:authentication="name">usuario@epn.edu.ec</div>
+                        <span class="badge bg-light text-primary" sec:authentication="principal.authorities[0]">ROLE_STUDENT</span>
+                    </div>
+
+                    <form th:action="@{/logout}" method="post" class="m-0">
+                        <button type="submit" class="btn btn-outline-light btn-sm fw-bold">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

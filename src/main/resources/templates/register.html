@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Estudiantil - FIS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center" style="height: 100vh;">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-0">
+                <div class="card-body p-5">
+                    <h2 class="text-center text-primary mb-4">Registro FIS</h2>
+                    <p class="text-muted text-center small">Solo correos @epn.edu.ec</p>
+
+                    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+                    <form th:action="@{/registro}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" name="fullName" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Correo Institucional</label>
+                            <input type="email" name="email" class="form-control" placeholder="ejemplo@epn.edu.ec" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Crear Cuenta</button>
+                    </form>
+                    <hr>
+                    <p class="text-center mb-0">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
